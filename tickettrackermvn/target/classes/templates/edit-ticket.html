@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary px-3">
+    <a class="navbar-brand text-white" href="/admin/tickets/">Ticket Tracker Application</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/tickets/">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/tickets/new-ticket">New Ticket</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container my-5 justify-content-center d-flex flex-column align-items-center">
+    <h3> Edit Ticket</h3>
+    <div class="card col-6 ">
+        <div class="card-body">
+            <div class="col-12">
+                <form action="#" th:action="@{/admin/tickets/update/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Title</label> <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter the title"> <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="shortDescription" class="col-form-label">Short Description</label> <textarea th:field="*{shortDescription}" class="form-control" id="shortDescription" placeholder="Enter the description"> </textarea> <span th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-form-label">Content</label> <textarea th:field="*{content}" class="form-control" id="content" placeholder="Enter the content"></textarea> <span th:if="${#fields.hasErrors('content')}" th:errors="content" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group my-3">
+                            <input type="submit" class="btn btn-primary" value="Update Ticket">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
